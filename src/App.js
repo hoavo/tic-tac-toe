@@ -7,6 +7,7 @@ import {
   Text,
   StyleSheet,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 import Header from 'components/Header';
@@ -83,27 +84,36 @@ const App = () => {
       );
     }
   };
+
+  const resetGame = () => {
+    setBoard(generateBoardData(sizeBoard));
+  };
   return (
     <>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
         <Header players={players} />
         <View style={styles.wrapperSetSizeBoard}>
-          <Text>Set size booard:</Text>
-          <TextInput
-            style={styles.inputSize}
-            type="number"
-            editable={countCheck === 0}
-            onChangeText={(text) => {
-              const number = Number(text);
-              if (!Number.isInteger(number) || number > 5) {
-                Alert.alert('Please input size board is Number and <6');
-                return;
-              }
-              setSizeBoard(number);
-            }}
-            defaultValue={String(sizeBoard)}
-          />
+          <View style={styles.row}>
+            <Text>Set size booard:</Text>
+            <TextInput
+              style={styles.inputSize}
+              type="number"
+              editable={countCheck === 0}
+              onChangeText={(text) => {
+                const number = Number(text);
+                if (!Number.isInteger(number) || number > 5) {
+                  Alert.alert('Please input size board is Number and <6');
+                  return;
+                }
+                setSizeBoard(number);
+              }}
+              defaultValue={String(sizeBoard)}
+            />
+          </View>
+          <TouchableOpacity style={styles.buttonNewGame} onPress={resetGame}>
+            <Text>New Game</Text>
+          </TouchableOpacity>
         </View>
         <Grid data={board} onPress={onPress} />
       </SafeAreaView>
@@ -115,7 +125,7 @@ const styles = StyleSheet.create({
   wrapperSetSizeBoard: {
     flexDirection: 'row',
     padding: 20,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   inputSize: {
@@ -124,6 +134,14 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderStyle: 'solid',
     padding: 5,
+    marginLeft: 10,
+  },
+  row: {flexDirection: 'row', alignItems: 'center'},
+  buttonNewGame: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderStyle: 'solid',
+    padding: 10,
   },
 });
 export default App;
