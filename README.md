@@ -23,12 +23,18 @@ Below is instructions for install and run the application
 
 ### Installation
 
+
 ```
 npm install
 # or
 yarn install
 ```
 
+For iOS
+
+```
+cd ios && pod install
+```
 
 ### Run the application
 
