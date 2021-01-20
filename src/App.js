@@ -86,6 +86,7 @@ const App = () => {
   };
 
   const resetGame = () => {
+    countCheck = 0;
     setBoard(generateBoardData(sizeBoard));
   };
   return (
