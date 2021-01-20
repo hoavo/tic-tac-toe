@@ -29,10 +29,21 @@ npm install
 yarn install
 ```
 
+
 ### Run the application
 
+
+Running application and start iOS simulator
 ```
 npm run ios
 # or
 yarn run ios
+```
+
+
+Running application and start android simulator
+```
+npm run android
+# or
+yarn run android
 ```
